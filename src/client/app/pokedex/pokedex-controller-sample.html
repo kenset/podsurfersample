@@ -1,0 +1,45 @@
+<section class="mainbar">
+  <section class="matter">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <pre class="  language-javascript"><code class=" language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+  angular
+    <span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'app.pokedex'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'PokedexController'</span><span class="token punctuation">,</span> PokedexController<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  PokedexController<span class="token punctuation">.</span>$inject <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'pokedexFactory'</span><span class="token punctuation">,</span> <span class="token string">'logger'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">/* @ngInject */</span>
+  <span class="token keyword">function</span> <span class="token function">PokedexController</span><span class="token punctuation">(</span>pokedexFactory<span class="token punctuation">,</span> logger<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> vm <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+
+    vm<span class="token punctuation">.</span>pokedex <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token function">activate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">function</span> <span class="token function">activate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">getPokemon</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">function</span> <span class="token function">getPokemon</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> success <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        logger<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token string">'Got Pokedex!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        vm<span class="token punctuation">.</span>pokedex <span class="token operator">=</span> response<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">var</span> error <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'Failed to get Pokedex'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+      pokedexFactory<span class="token punctuation">.</span><span class="token function">getPokedex</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>success<span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

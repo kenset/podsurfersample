@@ -1,0 +1,98 @@
+<section class="mainbar">
+  <section class="matter">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <pre class="  language-javascript"><code class="  language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+  angular
+    <span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'app.pokedex'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span>appRun<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  appRun<span class="token punctuation">.</span>$inject <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'routerHelper'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">/* @ngInject */</span>
+  <span class="token keyword">function</span> <span class="token function">appRun</span><span class="token punctuation">(</span>routerHelper<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    routerHelper<span class="token punctuation">.</span><span class="token function">configureStates</span><span class="token punctuation">(</span><span class="token function">getStates</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">getStates</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        state<span class="token punctuation">:</span> <span class="token string">'pokedex'</span><span class="token punctuation">,</span>
+        config<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          url<span class="token punctuation">:</span> <span class="token string">'/pokedex'</span><span class="token punctuation">,</span>
+          templateUrl<span class="token punctuation">:</span> <span class="token string">'app/pokedex/pokedex.html'</span><span class="token punctuation">,</span>
+          controller<span class="token punctuation">:</span> <span class="token string">'PokedexController'</span><span class="token punctuation">,</span>
+          controllerAs<span class="token punctuation">:</span> <span class="token string">'pokedexCtrl'</span><span class="token punctuation">,</span>
+          title<span class="token punctuation">:</span> <span class="token string">'pokedex'</span><span class="token punctuation">,</span>
+          settings<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            nav<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+            content<span class="token punctuation">:</span> <span class="token string">'Pokedex'</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        state<span class="token punctuation">:</span> <span class="token string">'pokedex-controller'</span><span class="token punctuation">,</span>
+        config<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          url<span class="token punctuation">:</span> <span class="token string">'/pokedex/controller'</span><span class="token punctuation">,</span>
+          templateUrl<span class="token punctuation">:</span> <span class="token string">'app/pokedex/pokedex-controller-sample.html'</span><span class="token punctuation">,</span>
+          settings<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            nav<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+            content<span class="token punctuation">:</span> <span class="token string">'pokedex.controller.js'</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        state<span class="token punctuation">:</span> <span class="token string">'pokedex-factory'</span><span class="token punctuation">,</span>
+        config<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          url<span class="token punctuation">:</span> <span class="token string">'/pokedex/factory'</span><span class="token punctuation">,</span>
+          templateUrl<span class="token punctuation">:</span> <span class="token string">'app/pokedex/pokedex-factory-sample.html'</span><span class="token punctuation">,</span>
+          settings<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            nav<span class="token punctuation">:</span> <span class="token number">4</span><span class="token punctuation">,</span>
+            content<span class="token punctuation">:</span> <span class="token string">'pokedex.factory.js'</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        state<span class="token punctuation">:</span> <span class="token string">'pokedex-html'</span><span class="token punctuation">,</span>
+        config<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          url<span class="token punctuation">:</span> <span class="token string">'/pokedex/html'</span><span class="token punctuation">,</span>
+          templateUrl<span class="token punctuation">:</span> <span class="token string">'app/pokedex/pokedex-html-sample.html'</span><span class="token punctuation">,</span>
+          settings<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            nav<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+            content<span class="token punctuation">:</span> <span class="token string">'pokedex.html.js'</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        state<span class="token punctuation">:</span> <span class="token string">'pokedex-route'</span><span class="token punctuation">,</span>
+        config<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          url<span class="token punctuation">:</span> <span class="token string">'/pokedex/route'</span><span class="token punctuation">,</span>
+          templateUrl<span class="token punctuation">:</span> <span class="token string">'app/pokedex/pokedex-route-sample.html'</span><span class="token punctuation">,</span>
+          settings<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            nav<span class="token punctuation">:</span> <span class="token number">6</span><span class="token punctuation">,</span>
+            content<span class="token punctuation">:</span> <span class="token string">'pokedex.route.js'</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        state<span class="token punctuation">:</span> <span class="token string">'pokedex-module'</span><span class="token punctuation">,</span>
+        config<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          url<span class="token punctuation">:</span> <span class="token string">'/pokedex/module'</span><span class="token punctuation">,</span>
+          templateUrl<span class="token punctuation">:</span> <span class="token string">'app/pokedex/pokedex-module-sample.html'</span><span class="token punctuation">,</span>
+          settings<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            nav<span class="token punctuation">:</span> <span class="token number">7</span><span class="token punctuation">,</span>
+            content<span class="token punctuation">:</span> <span class="token string">'pokedex.module.js'</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

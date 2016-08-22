@@ -1,0 +1,38 @@
+<section class="mainbar">
+  <section class="matter">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <pre class="  language-javascript"><code class=" language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+  angular
+    <span class="token punctuation">.</span><span class="token function">module</span><span class="token punctuation">(</span><span class="token string">'app.pokedex'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">factory</span><span class="token punctuation">(</span><span class="token string">'pokedexFactory'</span><span class="token punctuation">,</span> pokedexFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  pokedexFactory<span class="token punctuation">.</span>$inject <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'$http'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">pokedexFactory</span><span class="token punctuation">(</span>$http<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+      getPokedex<span class="token punctuation">:</span> getPokedex
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> exports<span class="token punctuation">;</span>
+
+    <span class="token keyword">function</span> <span class="token function">getPokedex</span><span class="token punctuation">(</span>region<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      region <span class="token operator">=</span> region <span class="token operator">?</span> region <span class="token punctuation">:</span> <span class="token string">'kanto'</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">var</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
+        cache<span class="token punctuation">:</span> <span class="token boolean">true</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">return</span> $http<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'http://pokeapi.co/api/v2/pokedex/'</span> <span class="token operator">+</span> region <span class="token operator">+</span> <span class="token string">'/'</span><span class="token punctuation">,</span> config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
