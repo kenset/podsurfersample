@@ -2,6 +2,28 @@
   <section class="matter">
     <div class="container">
       <div class="row">
+        <div class="col-xs-5">
+          <h1><a href="https://docs.angularjs.org/guide/controller" target="_blank">Angular Controllers</a></h1>
+          <p>This is the PokedexController. It does one thing: get the Pokedex!</p>
+          <h3><code>$scope</code> and Controller As Syntax</h3>
+          <p>If you've done research on Angular before now, you may have seen snippets that contain <code><a href="https://docs.angularjs.org/guide/scope" target="_blank">$scope.</a></code></p>
+          <p>Scopes can be confusing, but at its heart, scope <q>is the glue between application controller and the view.</q>
+          Angular iterates through properties on <code>$scope</code> during a 
+          <a href="https://www.ng-book.com/p/The-Digest-Loop-and-apply/" target="_blank">digest cycle</a>, notices changes, and updates the view accordingly.</p>
+          <p>You may notice that we're not using <code>$scope</code> in this controller.</p> 
+          <p>Instead, we're using something called <a href="https://johnpapa.net/angularjss-controller-as-and-the-vm-variable/" target="_blank">Controller As syntax</a>,
+          which is merely <a href="https://johnpapa.net/do-you-like-your-angular-controllers-with-or-without-sugar/" target="_blank">syntactic sugar.</a></p>
+          <p>The first thing we do with our controller is grab hold of the <code>this</code> variable so 
+          we can reference it later. We need to grab a reference of <code>this</code> because <code>this</code> changes
+          context depending on where you use it (e.g., a function inside the controller). So if we write <code>var vm = this;</code> as the first line in our controller,
+          then we know that <code>vm</code> always references the controller, since at the moment of assignment, <code>this</code> references the controller.</p>
+          <p>So how do we bind to the view without <code>$scope</code>?</p>
+          <p>Controllers are on the scope, and so if we treat the controller like an object and assign it properties, Angular's
+            digest cycle will pick up on changes to the controller and update the view.
+          </p>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-xs-12">
           <pre class="  language-javascript"><code class=" language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token string">'use strict'</span><span class="token punctuation">;</span>
@@ -11,19 +33,20 @@
     <span class="token punctuation">.</span><span class="token function">controller</span><span class="token punctuation">(</span><span class="token string">'PokedexController'</span><span class="token punctuation">,</span> PokedexController<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   PokedexController<span class="token punctuation">.</span>$inject <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'pokedexFactory'</span><span class="token punctuation">,</span> <span class="token string">'logger'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">/* @ngInject */</span>
+  
   <span class="token keyword">function</span> <span class="token function">PokedexController</span><span class="token punctuation">(</span>pokedexFactory<span class="token punctuation">,</span> logger<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">var</span> vm <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
 
     vm<span class="token punctuation">.</span>pokedex <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    vm<span class="token punctuation">.</span>getPokedex <span class="token operator">=</span> getPokedex<span class="token punctuation">;</span>
 
     <span class="token function">activate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">function</span> <span class="token function">activate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token function">getPokemon</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">getPokedex</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
-    <span class="token keyword">function</span> <span class="token function">getPokemon</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">function</span> <span class="token function">getPokedex</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token keyword">var</span> success <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         logger<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token string">'Got Pokedex!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         vm<span class="token punctuation">.</span>pokedex <span class="token operator">=</span> response<span class="token punctuation">;</span>

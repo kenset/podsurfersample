@@ -6,19 +6,20 @@
     .controller('PokedexController', PokedexController);
 
   PokedexController.$inject = ['pokedexFactory', 'logger'];
-  /* @ngInject */
+  
   function PokedexController(pokedexFactory, logger) {
     var vm = this;
 
     vm.pokedex = {};
+    vm.getPokedex = getPokedex;
 
     activate();
 
     function activate() {
-      getPokemon();
+      getPokedex();
     }
 
-    function getPokemon() {
+    function getPokedex() {
       var success = function(response) {
         logger.success('Got Pokedex!');
         vm.pokedex = response;
