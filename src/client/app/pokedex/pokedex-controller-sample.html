@@ -6,11 +6,11 @@
           <h1><a href="https://docs.angularjs.org/guide/controller" target="_blank">Angular Controllers</a></h1>
           <p>This is the PokedexController. It does one thing: get the Pokedex!</p>
           <h3><code>$scope</code> and Controller As Syntax</h3>
-          <p>If you've done research on Angular before now, you may have seen snippets that contain <code><a href="https://docs.angularjs.org/guide/scope" target="_blank">$scope.</a></code></p>
+          <p>You may notice that we're not using <code>$scope</code> in this controller.</p>
+          <p>If you've done research on Angular before now, a lot of examples on the Internet contain <code><a href="https://docs.angularjs.org/guide/scope" target="_blank">$scope</a></code>.</p>
           <p>Scopes can be confusing, but at its heart, scope <q>is the glue between application controller and the view.</q>
           Angular iterates through properties on <code>$scope</code> during a 
           <a href="https://www.ng-book.com/p/The-Digest-Loop-and-apply/" target="_blank">digest cycle</a>, notices changes, and updates the view accordingly.</p>
-          <p>You may notice that we're not using <code>$scope</code> in this controller.</p> 
           <p>Instead, we're using something called <a href="https://johnpapa.net/angularjss-controller-as-and-the-vm-variable/" target="_blank">Controller As syntax</a>,
           which is merely <a href="https://johnpapa.net/do-you-like-your-angular-controllers-with-or-without-sugar/" target="_blank">syntactic sugar.</a></p>
           <p>The first thing we do with our controller is grab hold of the <code>this</code> variable so 
