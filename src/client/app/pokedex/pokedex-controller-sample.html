@@ -2,30 +2,41 @@
   <section class="matter">
     <div class="container">
       <div class="row">
-        <div class="col-xs-5">
+        <div class="col-xs-12 col-md-5">
           <h1><a href="https://docs.angularjs.org/guide/controller" target="_blank">Angular Controllers</a></h1>
           <p>This is the PokedexController. It does one thing: get the Pokedex!</p>
           <h3><code>$scope</code> and Controller As Syntax</h3>
           <p>You may notice that we're not using <code>$scope</code> in this controller.</p>
           <p>If you've done research on Angular before now, a lot of examples on the Internet contain <code><a href="https://docs.angularjs.org/guide/scope" target="_blank">$scope</a></code>.</p>
-          <p>Scopes can be confusing, but at its heart, scope <q>is the glue between application controller and the view.</q>
-          Angular iterates through properties on <code>$scope</code> during a 
-          <a href="https://www.ng-book.com/p/The-Digest-Loop-and-apply/" target="_blank">digest cycle</a>, notices changes, and updates the view accordingly.</p>
-          <p>Instead, we're using something called <a href="https://johnpapa.net/angularjss-controller-as-and-the-vm-variable/" target="_blank">Controller As syntax</a>,
-          which is merely <a href="https://johnpapa.net/do-you-like-your-angular-controllers-with-or-without-sugar/" target="_blank">syntactic sugar.</a></p>
-          <p>The first thing we do with our controller is grab hold of the <code>this</code> variable so 
-          we can reference it later. We need to grab a reference of <code>this</code> because <code>this</code> changes
-          context depending on where you use it (e.g., a function inside the controller). So if we write <code>var vm = this;</code> as the first line in our controller,
-          then we know that <code>vm</code> always references the controller, since at the moment of assignment, <code>this</code> references the controller.</p>
+          <p>Scopes can be confusing, but at its heart, scope <q>is the glue between application controller and the view.</q> Angular iterates through properties on <code>$scope</code> during a
+            <a href="https://www.ng-book.com/p/The-Digest-Loop-and-apply/" target="_blank">digest cycle</a>, notices changes, and updates the view accordingly.</p>
+          <p>Instead, we're using something called <a href="https://johnpapa.net/angularjss-controller-as-and-the-vm-variable/" target="_blank">Controller As syntax</a>, which is merely <a href="https://johnpapa.net/do-you-like-your-angular-controllers-with-or-without-sugar/"
+              target="_blank">syntactic sugar.</a></p>
+          <p>The first thing we do with our controller is grab hold of the <code>this</code> variable so we can reference it later. We need to grab a reference of <code>this</code> because <code>this</code> changes context depending on where you use it (e.g.,
+            a function inside the controller). So if we write <code>var vm = this;</code> as the first line in our controller, then we know that <code>vm</code> always references the controller, since at the moment of assignment, <code>this</code> references
+            the controller.</p>
           <p>So how do we bind to the view without <code>$scope</code>?</p>
-          <p>Controllers are on the scope, and so if we treat the controller like an object and assign it properties, Angular's
-            digest cycle will pick up on changes to the controller and update the view.
+          <p>Controllers are on the scope, and so if we treat the controller like an object and assign it properties, Angular's digest cycle will pick up on changes to the controller and update the view.
           </p>
+          <p>So when we write <code>vm.pokedex = {};</code>, we're creating an empty <code>pokedex</code> object and putting it on <code>vm</code>, which we know is the controller. Later, when the <code>pokedex</code> object gets populated, Angular will
+            notice and update the view, and we'll see the actual contents of <code>pokedex</code> instead of just <code>{}</code>.
+          </p>
+          <h3>The <code>activate()</code> Function</h3>
+          <p>When the controller first loads, it captures the context of <code>this</code>, assigns default values to the controller object's properties, and calls <code>activate()</code>. For our controller,
+            <a href="https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#style-y080" target="_blank">all logic happens in the <code>activate()</code> function.</a> 
+            This is not required to give the controller behavior, but if all our logic is in one place, it's much easier to identify what the controller does.</p>
+            <p>If we had multiple pieces of data to get, we would call those functions here. But, in this case, all the controller does is <code>vm.getPokedex()</code>.</p>
+          <h3>The <code>getPokedex()</code> Function</h3>
+          <p>This function defines two <a href="http://callbackhell.com/" target="_blank">callbacks</a> -- a success callback and an error callback -- and then asks <code>pokedexFactory</code>
+           for the pokedex. Note that the <code>success</code> function and <code>error</code> function don't get called immediately, but are only defined.</p>
+           <p>Because <code><a ui-sref="pokedex-factory">pokedexFactory.getPokedex()</a></code> returns a <a href="http://andyshora.com/promises-angularjs-explained-as-cartoon.html" target="_blank">promise</a>, we can
+           call the <a href="https://docs.angularjs.org/api/ng/service/$q/#the-promise-api" target="_blank"><code>then()</code> function</a>, passing <code>success</code> and
+           <code>error</code> as arguments. If the promise resolves, <code>success</code> will be called, but if the promise is rejected, then <code>error</code> will be called.</p>
+           <p>You can see that both the <code>success</code> and <code>error</code> functions both take a single argument, <code>response</code>. This argument gets a value <a href="http://www.dictionary.com/browse/automagically" target="_blank">automagically</a> when the promise is
+           resolved or rejected, and contains either the requested data or information about the error.</p>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <pre class="  language-javascript"><code class=" language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <div class="col-xs-12 col-md-7">
+          <pre class="language-javascript"><code class=" language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token string">'use strict'</span><span class="token punctuation">;</span>
 
   angular
@@ -43,7 +54,7 @@
     <span class="token function">activate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">function</span> <span class="token function">activate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token function">getPokedex</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      vm<span class="token punctuation">.</span><span class="token function">getPokedex</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 
     <span class="token keyword">function</span> <span class="token function">getPokedex</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -63,6 +74,5 @@
 </code></pre>
         </div>
       </div>
-    </div>
   </section>
 </section>
