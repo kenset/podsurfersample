@@ -2,7 +2,29 @@
   <section class="matter">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 col-md-5">
+          <h1><a href="http://www.learn-angular.org/#!/lessons/the-factory-recipe" target="_blank">Angular Factories</a></h1>
+          <p>This is the <code>pokedexFactory</code>. It's in charge of handling the specifics about data.</p>
+          <p>The <code>pokedexFactory</code> is a type of <a href="https://docs.angularjs.org/guide/services" target="_blank">service</a> that uses
+          the <a href="https://docs.angularjs.org/guide/providers#factory-recipe" target="_blank">factory recipe.</a> There are
+          a few <a href="http://tech.dealer.com/a-field-guide-to-service-types-in-angularjs/" target="_blank">different types of services</a>, and, while they're all similar to one another, there 
+          are some <a href="http://stackoverflow.com/questions/15666048/angularjs-service-vs-provider-vs-factory" target="_blank">differences</a></p>
+          <h3><a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript" target="_blank">The Revealing Module Pattern</a></h3>
+          <p>According to John Papa's style guide, we <a href="https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#style-y052" target="_blank">use the revealing module pattern in factories.</a> When we use this pattern, we just return an object with properties we want to expose. If there are variables in the factory
+            that don't exist in the <code>exports</code> object, we can't access it from outside the factory.
+          </p>
+          <p>In this case, we want our controller to be able to call the <code>getPokedex()</code> function, so we expose it on the <code>exports</code> object.</p>
+          <h3>The <code>getPokedex()</code> Function</h3>
+          <p>Notice that the <code>getPokedex()</code> function can take a region as an argument, but we don't pass it one from the <code>PokedexController</code>. This just makes our
+          endpoint slightly more extensible. If we wanted, we could make a text box to allow a user to enter their own region, and pass that value from <code>PokedexController</code> to
+          <code>pokedexFactory</code>. And just in case the controller doesn't pass this value, we make sure to assign it a default value.</p>
+          <p>Angular's <a href="https://docs.angularjs.org/api/ng/service/$http" target="_blank"><code>$http</code> service</a> lets us generate an <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" target="_blank">HTTP</a> request
+          and returns a promise. Navigate to <a href="https://pokeapi.co/api/v2/pokedex/kanto/" target="_blank">https://pokeapi.co/api/v2/pokedex/kanto/</a> and you can see what this call will return.</p>
+          <p>The <code>$http</code> service's <a href="https://docs.angularjs.org/api/ng/service/$http#get" target="_blank"><code>get</code> function</a> let's us pass in a configuration object to specify any
+          extra options for how our request should be processed. We enable <a href="https://docs.angularjs.org/api/ng/service/$http#caching" target="_blank">caching</a> so that we can click back and forth between the <a ui-sref="pokedex">Pokedex</a> in the navigation bar
+          and other elements without having to make this call multiple times. Notice that, after this value gets cached, the Pokedex returns immediately! And, since the cache key is the request URL, every request that takes in a different region is cached separately.</p>
+        </div>
+        <div class="col-xs-12 col-md-7">
           <pre class="  language-javascript"><code class=" language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token string">'use strict'</span><span class="token punctuation">;</span>
 
@@ -26,7 +48,7 @@
         cache<span class="token punctuation">:</span> <span class="token boolean">true</span>
       <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-      <span class="token keyword">return</span> $http<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'http://pokeapi.co/api/v2/pokedex/'</span> <span class="token operator">+</span> region <span class="token operator">+</span> <span class="token string">'/'</span><span class="token punctuation">,</span> config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> $http<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'https://pokeapi.co/api/v2/pokedex/'</span> <span class="token operator">+</span> region <span class="token operator">+</span> <span class="token string">'/'</span><span class="token punctuation">,</span> config<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>

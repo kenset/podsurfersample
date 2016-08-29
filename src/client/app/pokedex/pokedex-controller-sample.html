@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-xs-12 col-md-5">
           <h1><a href="https://docs.angularjs.org/guide/controller" target="_blank">Angular Controllers</a></h1>
-          <p>This is the PokedexController. It does one thing: get the Pokedex!</p>
+          <p>This is the <code>PokedexController</code>. It does one thing: get the Pokedex!</p>
           <h3><code>$scope</code> and Controller As Syntax</h3>
           <p>You may notice that we're not using <code>$scope</code> in this controller.</p>
           <p>If you've done research on Angular before now, a lot of examples on the Internet contain <code><a href="https://docs.angularjs.org/guide/scope" target="_blank">$scope</a></code>.</p>
@@ -29,6 +29,7 @@
           <h3>The <code>getPokedex()</code> Function</h3>
           <p>This function defines two <a href="http://callbackhell.com/" target="_blank">callbacks</a> -- a success callback and an error callback -- and then asks <code>pokedexFactory</code>
            for the pokedex. Note that the <code>success</code> function and <code>error</code> function don't get called immediately, but are only defined.</p>
+           <p>We have access to the <code>pokedexFactory</code> through <a href="https://docs.angularjs.org/guide/di" target="_blank">dependency injection.</a></p>
            <p>Because <code><a ui-sref="pokedex-factory">pokedexFactory.getPokedex()</a></code> returns a <a href="http://andyshora.com/promises-angularjs-explained-as-cartoon.html" target="_blank">promise</a>, we can
            call the <a href="https://docs.angularjs.org/api/ng/service/$q/#the-promise-api" target="_blank"><code>then()</code> function</a>, passing <code>success</code> and
            <code>error</code> as arguments. If the promise resolves, <code>success</code> will be called, but if the promise is rejected, then <code>error</code> will be called.</p>
