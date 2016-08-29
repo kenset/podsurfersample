@@ -2,7 +2,24 @@
   <section class="matter">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 col-md-5">
+          <h1><a href="https://docs.angularjs.org/guide/templates" target="_blank">Angular Templates</a></h1>
+          <p>Ignore the <code>section</code> and <code>div</code> tags -- they only serve to position the Pokedex on the screen.</p>
+          <p>The curly braces around <code>pokedexCtrl.pokedex | json</code> <a href="https://docs.angularjs.org/api/ng/service/$interpolate" target="_blank">interpolate</a> the data located at <code>pokedexCtrl.pokedex</code>, and enable the actual
+          data to show up instead of the literal characters.</p>
+          <p><code>json</code> is just an <a href="https://docs.angularjs.org/guide/filter" target="_blank">Angular filter</a> that pretty prints the Pokedex.</p>
+          <p>But how do we actually get at the data? How does Angular know that our Pokedex is located at <code>pokedexCtrl.pokedex</code>?</p>
+          <p>This is because we're using <a href="https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#style-y030" target="_blank">Controller As syntax</a>.</p>
+          <p>In some examples you might see people write the following: <pre class="  language-markup"><code class="  language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ng-controller</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>PokedexController as pokedexCtrl<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <code ng-non-bindable>{{pokedexCtrl.pokedex | json}}</code>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre></p>
+        <p>This is fine, and it definitely works, but it tightly couples the template we use with the controller we use it with. Rather, we prefer to assign the view and controller in
+          the <a ui-sref="pokedex-route">Route file</a>. There, you'll find that we configure the states to use a specific template, with a specific controller, with a specific controller name, denoted with <code>controllerAs</code>. 
+        </p>
+        <p>This, combined with the fact that <code>pokedex</code> is the name of the object we assigned the Pokedex data to in our <a ui-sref="pokedex-controller">PokedexController</a>, enables 
+        us to reference <code>pokedexCtrl.pokedex</code> in our view.</p>
+        </div>
+        <div class="col-xs-12 col-md-7">
           <pre class="  language-markup"><code class=" language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mainbar<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>matter<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
