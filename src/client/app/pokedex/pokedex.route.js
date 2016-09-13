@@ -56,7 +56,7 @@
           templateUrl: 'app/pokedex/pokedex-html-sample.html',
           settings: {
             nav: 5,
-            content: 'pokedex.html.js'
+            content: 'pokedex.html'
           }
         }
       },
